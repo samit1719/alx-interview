@@ -1,31 +1,19 @@
 #!/usr/bin/python3
-'''LockBoxes'''
+"""
+************
+"""
 
 
 def canUnlockAll(boxes):
-    '''
-        True: can be opened
-        False: can't be opened
-    '''
-    length = len(boxes)
-    keys = set()
-    opened_boxes = []
-    i = 0
-
-    while i < length:
-        oldi = i
-        opened_boxes.append(i)
-        keys.update(boxes[i])
-        for key in keys:
-            if key != 0 and key < length and key not in opened_boxes:
-                i = key
+    """
+    Check if opend or not
+    """
+    for key in range(1, len(boxes) - 1):
+        ctr = False
+        for idx in range(len(boxes)):
+            ctr = (key in boxes[idx] and key != idx)
+            if ctr:
                 break
-        if oldi != i:
-            continue
-        else:
-            break
-
-    for i in range(length):
-        if i not in opened_boxes and i != 0:
-            return False
+        if ctr is False:
+            return ctr
     return True
