@@ -3,11 +3,16 @@
 
 def minOperations(n):
 
-    result = 0
-    x = 2
-    while n > 1:
-        while n % x == 0:
-            result += x
-            n /= x
-        x += 1
-    return result
+    now = 1
+    start = 0
+    counter = 0
+    while now < n:
+        remainder = n - now
+        if (remainder % now == 0):
+            start = now
+            now += start
+            counter += 2
+        else:
+            now += start
+            counter += 1
+    return counter
